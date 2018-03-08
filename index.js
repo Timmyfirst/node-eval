@@ -33,6 +33,10 @@ app.get('/livre', (req, res) => {
   res.send('#{JSON.stringify(foobar})')
 })
 
+app.get(/private/, function(req, res) {
+  res.status(403).send('Accès interdit')
+});
+
 app.use('*', function respond404(req, res) {
   res.status(404).send('Page introuvable')
 })
