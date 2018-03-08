@@ -17,9 +17,15 @@
     </nav>
 
     <main role="main" class="container">
-      <section>
+      <div class="row">
+        
+      <aside class="col col-md-3">
+        {{> aside}}
+      </aside>
+      <section class="col col-md-9">
         {{> section}}
       </section>
+      </div>
     </main>
 
     <footer class="mastfoot mt-auto">

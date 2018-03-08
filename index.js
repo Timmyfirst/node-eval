@@ -60,33 +60,53 @@ app.get('/end', (req, res) => {
 app.get(/private/, function(req, res) {
   res.status(403).send('Accès interdit')
 });
-app.get('/liste', (req, res) => {
+app.get('/liste/:currency?', (req, res) => {
 
-    readJson('forex.json')
-        .then(result => console.log(result.rates))
-        // recup k v
-        .then(devises => devises.map(devise => console.log(devise)))
+    currency = req.query.currency;
+      
+    if( currency == null ){
+      currency = 'EUR';
+    }
 
+    const p1 = readJson('forex.json')
+        .then(result => {
+          // console.log(JSON.parse(result.rates));
+          return Object.keys(result.rates).map(function(key){
+            result.rates[key]
+            return {'rate': result.rates[key], 'currency': key}
+          });
+          // return result.rates
+          // return [Object.keys(result.rates), Object.values(result.rates)];
+        })
         .catch(err => {
 
         })
 
 
+    const dataPromise = fakeDb.getAll();
 
-    const data = fakeDb.getAll();
-    console.log(getForexJson())
+    const p2 = dataPromise;
+    
+    // JSON.parse(p2).map(function(key){
+    //   console.log(key)
+    // })
 
-    data.then((list)=>{
-        console.log(getForexJson());
+    // .then((list)=>{
+    // })
+
+    Promise.all([p1, p2]).then(function(results) {
+       const devises = results[0]
+       const list = results[1]
        res.render('main', {
            partials: {
-               main: 'liste',
+               section: 'liste',
+               aside: 'devises'
            },
            title: 'Liste des enregistrements',
-           items: list
-
+           items: list,
+           devises: devises
        })
-    })
+    }).catch(err => console.log(err))
 })
 
 app.get('/liste/:id', (req, res) => {
@@ -96,7 +116,7 @@ app.get('/liste/:id', (req, res) => {
 
     res.render('main', {
         partials: {
-            main: 'listeDetail',
+            section: 'listeDetail',
         },
         title: 'Liste des enregistrements',
         name: name,
