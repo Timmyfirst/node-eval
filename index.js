@@ -90,7 +90,7 @@ app.get('/add', (req, res) => {
 
         res.render('main', {
             partials: {
-                main: 'listeAjout',
+                section: 'listeAjout',
             },
             title: 'Ajouté un élément',
 
@@ -109,7 +109,7 @@ app.post('/add', (req, res, next) => {
         console.log(getForexJson());
         res.render('main', {
             partials: {
-                main: 'listeAjout',
+                section: 'listeAjout',
             },
             title: 'enregistré',
 
