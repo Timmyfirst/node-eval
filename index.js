@@ -14,7 +14,7 @@ const port = 8000
 
 app.get('*',(req, res, next) => {
   let min = new Date().getMinutes()
-  if (min >= 10 && min <= 59){
+  if (min >= 49 && min <= 59){
     console.log('site occupé')
       res.status(503).render('main', {
         partials: {
