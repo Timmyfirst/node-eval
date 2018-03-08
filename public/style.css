@@ -10,7 +10,7 @@ button {
 	text-transform:capitalize;
 }
 
-.bouton {
+#bouton {
 	padding:6px 0 6px 0;
 	font:bold 13px Arial;
 	background:#478bf9;
