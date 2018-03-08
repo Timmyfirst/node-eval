@@ -29,8 +29,13 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/livre', (req, res) => {
-  res.send('#{JSON.stringify(foobar})')
+app.get('/end', (req, res) => {
+  res.render('main', {
+    partials: {
+      section: 'end',
+    },
+    title: 'Node eval',
+  })
 })
 
 app.get(/private/, function(req, res) {
