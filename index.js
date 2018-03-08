@@ -3,10 +3,15 @@ const consolidate = require('consolidate')
 const fakeDb = require('./helpers/fake-db.js')
 const fs = require('fs');
 const readJson = require('./readJson')
+const bodyParser = require('body-parser')
 
 const app = express()
 app.engine('html', consolidate.mustache);
 app.set('view engine', 'html');
+
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
 
 const port = 8000
 
@@ -36,7 +41,7 @@ app.get('/livre', (req, res) => {
 app.get('/liste', (req, res) => {
 
     readJson('forex.json')
-        .then(result => console.log(result.rates))
+        .then(result => console.log(result.rates.split(':')))
         // recup k v
         .then(devises => devises.map(devise => console.log(devise)))
 
@@ -78,6 +83,43 @@ app.get('/liste/:id', (req, res) => {
     })
 
 })
+
+app.get('/add', (req, res) => {
+
+
+
+        res.render('main', {
+            partials: {
+                main: 'listeAjout',
+            },
+            title: 'Ajouté un élément',
+
+
+        })
+
+})
+
+
+app.post('/add', (req, res, next) => {
+    console.log(req.body);
+    const result = {name: req.body.nameElement, priceEur:req.body.price}
+    const addDB= fakeDb.add(result);
+
+    addDB.then((data)=>{
+        console.log(getForexJson());
+        res.render('main', {
+            partials: {
+                main: 'listeAjout',
+            },
+            title: 'enregistré',
+
+
+        })
+    })
+})
+
+
+
 
 
 function getForexJson() {
