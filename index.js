@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
     partials: {
       section: 'welcome',
     },
-    title: 'Node eval',
+    title: 'Hello World',
   })
 })
 
@@ -34,7 +34,7 @@ app.get('/end', (req, res) => {
     partials: {
       section: 'end',
     },
-    title: 'Node eval',
+    title: 'Page END',
   })
 })
 
