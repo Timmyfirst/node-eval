@@ -1,5 +1,6 @@
 const express = require('express')
 const consolidate = require('consolidate')
+const morgan = require('morgan')
 
 const app = express()
 
@@ -7,6 +8,7 @@ app.engine('html', consolidate.mustache);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.use('/static', express.static('public'));
+app.use(morgan('combined'))
 
 const port = 8000
 
