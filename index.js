@@ -3,6 +3,11 @@ const consolidate = require('consolidate')
 
 const app = express()
 
+app.engine('html', consolidate.mustache);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+app.use('/static', express.static('public'));
+
 const port = 8000
 
 app.listen(port, err => {
@@ -13,21 +18,19 @@ app.listen(port, err => {
   }
 })
 
-app.engine('html', consolidate.mustache);
-app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
-
 app.get('/', (req, res) => {
-  console.log(req.path);
-  res.send('<h1>Hello index</h1>')
+  res.render('main', {
+    partials: {
+      section: 'welcome',
+    },
+    title: 'Node eval',
+  })
 })
 
 app.get('/livre', (req, res) => {
-  console.log(req.path);
   res.send('#{JSON.stringify(foobar})')
 })
 
 app.use('*', function respond404(req, res) {
-  console.log(req.path);
   res.status(404).send('Page introuvable')
 })

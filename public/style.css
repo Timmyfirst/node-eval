@@ -1,0 +1,21 @@
+.header {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+button {
+	width:110px;
+	cursor:pointer;
+	text-transform:capitalize;
+}
+
+.bouton {
+	padding:6px 0 6px 0;
+	font:bold 13px Arial;
+	background:#478bf9;
+	color:#fff;
+	border-radius:2px;
+	width:100px;
+	border:none;
+}
