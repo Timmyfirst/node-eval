@@ -1,0 +1,14 @@
+<h1>Liste dans fake DB</h1>
+
+
+<ul>
+    {{#items}}
+    <li>
+        <a href="/liste/{{id}}?name={{name}}&&priceEur={{priceEur}}">{{name}}</a> - {{priceEur}}
+    </li>
+    {{/items}}
+</ul>
+
+<button>
+    Ajouter
+</button>

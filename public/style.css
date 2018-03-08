@@ -1,0 +1,39 @@
+body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.header {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+section{
+	padding: 20px 0;
+}
+
+button {
+	width:110px;
+	cursor:pointer;
+	text-transform:capitalize;
+}
+
+#bouton {
+	padding:6px 0 6px 0;
+	font:bold 13px Arial;
+	background:#478bf9;
+	color:#fff;
+	border-radius:2px;
+	width:100px;
+	border:none;
+}
+
+.mastfoot{
+	display: block;
+	text-align: center;
+	padding: 2em 10px;
+}
