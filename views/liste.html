@@ -1,0 +1,26 @@
+<h1>Liste dans fake DB</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{{#items}}
+	    <tr>
+	      <th scope="row">{{id}}</th>
+	      <td>{{name}}</td>
+	      <td>{{priceEur}}</td>
+	      <td><a href="/liste/{{id}}?name={{name}}&priceEur={{priceEur}}">Détail</a></td>
+	    </tr>
+    {{/items}}
+  </tbody>
+</table>
+
+<a class="btn btn-primary" href="/add">
+    Ajouter
+</a>
