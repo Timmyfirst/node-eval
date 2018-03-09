@@ -62,11 +62,13 @@ app.get(/private/, function(req, res) {
 });
 app.get('/liste/:currency?', (req, res) => {
 
-    currency = req.query.currency;
+    cur = req.query.currency;
       
-    if( currency == null ){
-      currency = 'EUR';
+    if( cur == null ){
+      cur = 'EUR';
     }
+
+    const currency = cur
 
     const p1 = readJson('forex.json')
         .then(result => {
@@ -86,6 +88,20 @@ app.get('/liste/:currency?', (req, res) => {
     const dataPromise = fakeDb.getAll();
 
     const p2 = dataPromise;
+
+    const arrayResult = [];
+
+    dataPromise
+    .then(items => {
+      items.forEach(function(item){
+        console.log(devises)
+        arrayResult.push(item); 
+      })
+    })
+    .then(function(value) {
+      console.log(arrayResult);
+    })
+    
     
     // JSON.parse(p2).map(function(key){
     //   console.log(key)
